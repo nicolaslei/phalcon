@@ -1,0 +1,34 @@
+{
+    "name": "nicolas/lianni",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Nicolas",
+            "email": "nicolaslei@163.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Lianni\\": "app/library",
+            "Lianni\\Model\\": "app/model",
+            "Lianni\\Controller\\": "app/controller",
+            "Lianni\\Provider\\": "app/provider",
+            "Lianni\\Listener\\": "app/listener"
+        },
+        "files": [
+            "bootstrap/helpers.php"
+        ]
+    },
+    "require": {
+        "php": ">=7.2",
+        "ext-curl": "*",
+        "ext-mbstring": "*",
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "ext-phalcon": "~3.2",
+        "vlucas/phpdotenv": "^2.4",
+        "filp/whoops": "^2.1",
+        "league/flysystem": "^1.0"
+    }
+}

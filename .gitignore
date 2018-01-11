@@ -1,0 +1,5 @@
+/vendor
+/.idea
+/storage/logs/application.log
+/storage/cache/config/cached.php
+/composer.lock
