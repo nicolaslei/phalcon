@@ -14,4 +14,9 @@ class Cli extends AbstractBootstrap
     {
         $this->app = new Console($this->di);
     }
+
+    protected function initializeServiceProviders()
+    {
+        // TODO: Implement initializeServiceProviders() method.
+    }
 }

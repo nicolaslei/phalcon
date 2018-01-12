@@ -14,7 +14,7 @@ class ServiceProvider extends AbstractServiceProvider
             'view',
             function () {
                 $config = container('config')->application;
-                $mode = container('bootstrap')->getMode();
+                $mode   = container('bootstrap')->getMode();
 
                 switch ($mode) {
                     case 'normal';

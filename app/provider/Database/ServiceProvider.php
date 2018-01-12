@@ -1,16 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2018/1/9
- * Time: 22:36
- */
 
 namespace Lianni\Provider\Database;
 
-
+use Lianni\Listener\Database as DatabaseListener;
 use Lianni\Provider\AbstractServiceProvider;
-use Phalcon\Db\Adapter\Pdo\Factory;
 
 class ServiceProvider extends AbstractServiceProvider
 {
@@ -19,19 +12,18 @@ class ServiceProvider extends AbstractServiceProvider
         $this->di->setShared(
             'db',
             function () {
-                $config = container('config')->database;
-                $em     = container('eventsManager');
+                $config  = container('config')->database;
+                $em      = container('eventsManager');
+                $adapter = '\Phalcon\Db\Adapter\Pdo\\' . $config->adapter;
 
                 /** @var \Phalcon\Db\Adapter\Pdo $connection */
-                $connection = Factory::load($config);
+                $connection = new $adapter($config->toArray());
 
-                $em->attach('db', new Database());
-
+                $em->attach('db', new DatabaseListener());
                 $connection->setEventsManager($em);
 
                 return $connection;
             }
         );
     }
-
 }

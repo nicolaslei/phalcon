@@ -15,21 +15,23 @@ class ServiceProvider extends AbstractServiceProvider
     {
         $run  = new Run();
         $mode = container('bootstrap')->getMode();
+
         switch ($mode) {
             case 'normal':
                 if (env('SITE_DEBUG', false)) {
-                    $run->pushHandler(new PrettyPageHandler());
+                    $handler = new PrettyPageHandler();
+                    $handler->setPageTitle('出错了');
+
+                    $run->pushHandler($handler);
                 } else {
                     $run->pushHandler(new ErrorPageHandler);
                 }
                 break;
             case 'api':
-                $run->pushHandler(function () {
-                    $handler = new JsonResponseHandler();
-                    $handler->setJsonApi(true);
+                $handler = new JsonResponseHandler();
+                $handler->setJsonApi(true);
 
-                    return $handler;
-                });
+                $run->pushHandler($handler);
                 break;
             default:
                 new \InvalidArgumentException(
@@ -39,7 +41,6 @@ class ServiceProvider extends AbstractServiceProvider
                     )
                 );
         }
-
 
         $run->pushHandler(new LoggerHandler);
 

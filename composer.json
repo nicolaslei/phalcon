@@ -17,11 +17,11 @@
             "Lianni\\Listener\\": "app/listener"
         },
         "files": [
-            "bootstrap/helpers.php"
+            "app/helpers.php"
         ]
     },
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.1",
         "ext-curl": "*",
         "ext-mbstring": "*",
         "ext-iconv": "*",

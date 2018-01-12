@@ -20,12 +20,13 @@ class Mvc extends AbstractBootstrap
 
     ];
 
+    protected $mode = 'normal';
+
     /**
      * Initializes the application
      */
     protected function initApplication()
     {
-        $this->mode = 'normal';
         $this->app  = new Application($this->di);
     }
 

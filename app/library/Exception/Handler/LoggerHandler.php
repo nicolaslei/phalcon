@@ -120,6 +120,9 @@ class LoggerHandler extends Handler
         return 'text/plain';
     }
 
+    /**
+     * @return mixed|null|\Phalcon\Logger\AdapterInterface
+     */
     private function getLogger()
     {
         if (container()->has('logger')) {

@@ -10,6 +10,9 @@ abstract class AbstractBootstrap
 {
     protected $di;
 
+    /**
+     * @var \Phalcon\Application
+     */
     protected $app;
 
     /**
@@ -22,6 +25,12 @@ abstract class AbstractBootstrap
 
     public function __construct()
     {
+        if (!$this->mode) {
+            throw new \LogicException(
+                sprintf('"%s" 必须设置应用的模式[mode].', get_class($this))
+            );
+        }
+
         $this->di = new FactoryDefault();
         Di::setDefault($this->di);
         $this->di->setShared('bootstrap', $this);
@@ -37,14 +46,26 @@ abstract class AbstractBootstrap
     {
         /**
          *
-         * These services should be registered first
+         * 先注册框架的事件管理
          */
         $this->initializeServiceProvider(new Provider\EventsManager\ServiceProvider());
+        // 设置环境
         $this->setupEnvironment();
+        // 注册错误处理程序
         $this->initializeServiceProvider(new Provider\ErrorHandler\ServiceProvider($this->di));
 
         $this->initApplication();
+
+        /**
+         * 注册其他服务
+         * 由应用的模式决定注册什么服务
+         */
         $this->initializeServiceProviders();
+
+        $this->app->setEventsManager(container('eventsManager'));
+
+        $this->di->setShared('app', $this->app);
+        $this->app->setDI($this->di);
 
         return $this->runApplication();
     }
@@ -55,7 +76,7 @@ abstract class AbstractBootstrap
     }
 
     /**
-     * Gets current application environment: production, staging, development, testing, etc.
+     * 获取应用当前环境: production, staging, development, testing, etc.
      *
      * @return string
      */
@@ -76,7 +97,12 @@ abstract class AbstractBootstrap
         $this->initializeServiceProvider(new Provider\Environment\ServiceProvider($this->di));
     }
 
-    protected function initializeServiceProvider(Provider\ServiceProviderInterface $serviceProvider): void
+    /**
+     * 注册服务
+     *
+     * @param Provider\ServiceProviderInterface $serviceProvider
+     */
+    protected function initializeServiceProvider(Provider\ServiceProviderInterface $serviceProvider)
     {
         $serviceProvider->register();
     }
