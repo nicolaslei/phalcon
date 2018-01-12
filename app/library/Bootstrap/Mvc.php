@@ -17,7 +17,7 @@ class Mvc extends AbstractBootstrap
         Provider\Database\ServiceProvider::class,
         Provider\Annotations\ServiceProvider::class,
         Provider\ModelsManager\ServiceProvider::class,
-
+        Provider\ModelsMetadata\ServiceProvider::class,
     ];
 
     protected $mode = 'normal';
