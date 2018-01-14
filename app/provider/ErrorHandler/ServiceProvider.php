@@ -18,7 +18,7 @@ class ServiceProvider extends AbstractServiceProvider
 
         switch ($mode) {
             case 'normal':
-                if (env('SITE_DEBUG', false)) {
+                if (env('APP_DEBUG', false)) {
                     $handler = new PrettyPageHandler();
                     $handler->setPageTitle('出错了');
 

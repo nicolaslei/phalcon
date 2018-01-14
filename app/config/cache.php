@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'default'  => env('METADATA_DRIVER', 'memory'),
+    'default'  => env('CACHE_DRIVER', 'file'),
     'drivers'  => [
         'apc'       => [
             'adapter' => 'Apc',
@@ -17,8 +17,8 @@ return [
             ],
         ],
         'file'      => [
-            'adapter'     => 'Files',
-            'metaDataDir' => cache_path('metaData') . DIRECTORY_SEPARATOR,
+            'adapter'  => 'File',
+            'cacheDir' => cache_path('data') . '/'
         ],
         'redis'     => [
             'adapter' => 'Redis',
@@ -29,10 +29,7 @@ return [
         'memory'    => [
             'adapter' => 'Memory',
         ],
-        'session'   => [
-            'adapter' => 'Session',
-        ],
     ],
-    'prefix'   => env('METADATA_PREFIX', 'lianni_metadata_'),
-    'lifetime' => env('METADATA_LIFETIME', 172800),
+    'prefix'   => env('CACHE_PREFIX', 'forum_cache_'),
+    'lifetime' => env('CACHE_LIFETIME', 86400),
 ];

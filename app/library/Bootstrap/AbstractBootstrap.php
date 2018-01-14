@@ -91,7 +91,7 @@ abstract class AbstractBootstrap
     }
     protected function setupEnvironment()
     {
-        $this->environment = env('SITE_ENV', 'development');
+        $this->environment = env('APP_ENV', 'development');
         defined('APPLICATION_ENV') || define('APPLICATION_ENV', $this->environment);
 
         $this->initializeServiceProvider(new Provider\Environment\ServiceProvider($this->di));

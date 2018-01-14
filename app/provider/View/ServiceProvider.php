@@ -2,7 +2,6 @@
 
 namespace Lianni\Provider\View;
 
-use Lianni\Listener\View as ViewListener;
 use Lianni\Provider\AbstractServiceProvider;
 use Phalcon\Mvc\View;
 
@@ -36,7 +35,7 @@ class ServiceProvider extends AbstractServiceProvider
                 $view->setViewsDir($config->viewsDir);
 
                 $eventsManager = container('eventsManager');
-                $eventsManager->attach('view', new ViewListener());
+                $eventsManager->attach('view', new Listener());
 
                 $view->setEventsManager($eventsManager);
 

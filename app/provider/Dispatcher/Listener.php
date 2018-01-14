@@ -1,29 +1,29 @@
 <?php
 
-namespace Lianni\Listener;
+namespace Lianni\Provider\Dispatcher;
 
-use Phalcon\Dispatcher as PhaDispatcher;
+use Phalcon\Dispatcher;
 use Phalcon\Events\Event;
 use Phalcon\Mvc\Dispatcher\Exception;
 use Lianni\Exception\LianniException;
 
-class Dispatcher
+class Listener
 {
     /**
      * 调度异常处理.
      *
-     * @param  Event         $event
-     * @param  PhaDispatcher $dispatcher
-     * @param  \Exception    $exception
+     * @param  Event $event
+     * @param  Dispatcher $dispatcher
+     * @param  \Exception $exception
      * @return bool
      *
      * @throws \Exception|\Throwable
      */
-    public function beforeException(Event $event, PhaDispatcher $dispatcher, $exception)
+    public function beforeException(Event $event, Dispatcher $dispatcher, $exception)
     {
         if ($exception instanceof Exception) {
             switch ($exception->getCode()) {
-                case PhaDispatcher::EXCEPTION_CYCLIC_ROUTING:
+                case Dispatcher::EXCEPTION_CYCLIC_ROUTING:
                     $code = 400;
                     $dispatcher->forward([
                         'controller' => 'error',

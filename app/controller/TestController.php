@@ -4,13 +4,13 @@ namespace Lianni\Controller;
 
 use Phalcon\Mvc\Controller;
 
-class IndexController extends Controller
+class TestController extends Controller
 {
     /**
-     * @Get('/')
+     * @Get('/test')
      */
     public function indexAction()
     {
-
+        echo __FILE__;exit;
     }
 }

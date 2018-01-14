@@ -2,7 +2,6 @@
 
 namespace Lianni\Provider\Annotations;
 
-//use Lianni\Annotations\Factory;
 use Phalcon\Annotations\Factory;
 use Lianni\Provider\AbstractServiceProvider;
 
@@ -13,10 +12,16 @@ class ServiceProvider extends AbstractServiceProvider
         $this->di->setShared(
             'annotations',
             function () {
-                $config      = container('config')->annotations;
-                $annotations = Factory::load($config);
+                $config  = container('config')->annotations;
+                $driver  = $config->drivers->{$config->default};
+                $adapter = '\Phalcon\Annotations\Adapter\\' . $driver->adapter;
 
-                return $annotations;
+                $default = [
+                    'lifetime' => $config->lifetime,
+                    'prefix'   => $config->prefix,
+                ];
+
+                return new $adapter(array_merge($driver->toArray(), $default));
             }
         );
     }

@@ -14,10 +14,15 @@ class Mvc extends AbstractBootstrap
         Provider\View\ServiceProvider::class,
         Provider\Dispatcher\ServiceProvider::class,
         Provider\UrlResolver\ServiceProvider::class,
+        Provider\Session\ServiceProvider::class,
         Provider\Database\ServiceProvider::class,
         Provider\Annotations\ServiceProvider::class,
         Provider\ModelsManager\ServiceProvider::class,
         Provider\ModelsMetadata\ServiceProvider::class,
+        Provider\Security\ServiceProvider::class,
+        Provider\Maintain\ServiceProvider::class,
+        Provider\Routing\ServiceProvider::class,
+        Provider\DataCache\ServiceProvider::class,
     ];
 
     protected $mode = 'normal';

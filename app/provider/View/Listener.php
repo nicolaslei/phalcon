@@ -1,12 +1,12 @@
 <?php
 
-namespace Lianni\Listener;
+namespace Lianni\Provider\View;
 
 use Phalcon\Events\Event;
 use Phalcon\Mvc\View\Exception;
 use Phalcon\Mvc\ViewBaseInterface;
 
-class View
+class Listener
 {
     public function notFoundView(Event $event, ViewBaseInterface $view, $viewEnginePath)
     {
@@ -21,7 +21,7 @@ class View
         container()->get('logger')->error($message);
 
         if ($event->isCancelable()) {
-            //$event->stop();
+            $event->stop();
         }
 
         throw new Exception($message);

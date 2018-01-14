@@ -2,7 +2,6 @@
 
 namespace Lianni\Provider\ModelsManager;
 
-use Lianni\Listener\ModelsManager;
 use Lianni\Provider\AbstractServiceProvider;
 use Phalcon\Mvc\Model\Manager;
 
@@ -17,7 +16,7 @@ class ServiceProvider extends AbstractServiceProvider
                 $eventsManager = container('eventsManager');
                 $modelsManager = new Manager();
 
-                $eventsManager->attach('modelsManager', new ModelsManager());
+                //$eventsManager->attach('modelsManager', new Listener());
 
                 $modelsManager->setModelPrefix($config->sourceprefix);
                 $modelsManager->setEventsManager($eventsManager);

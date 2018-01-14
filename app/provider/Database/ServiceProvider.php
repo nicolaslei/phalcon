@@ -2,7 +2,6 @@
 
 namespace Lianni\Provider\Database;
 
-use Lianni\Listener\Database as DatabaseListener;
 use Lianni\Provider\AbstractServiceProvider;
 
 class ServiceProvider extends AbstractServiceProvider
@@ -19,7 +18,7 @@ class ServiceProvider extends AbstractServiceProvider
                 /** @var \Phalcon\Db\Adapter\Pdo $connection */
                 $connection = new $adapter($config->toArray());
 
-                $em->attach('db', new DatabaseListener());
+                $em->attach('db', new Listener());
                 $connection->setEventsManager($em);
 
                 return $connection;

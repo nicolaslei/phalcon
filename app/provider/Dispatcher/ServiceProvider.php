@@ -2,7 +2,6 @@
 
 namespace Lianni\Provider\Dispatcher;
 
-use Lianni\Listener\Dispatcher as DispatcherListener;
 use Lianni\Provider\AbstractServiceProvider;
 use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 
@@ -20,7 +19,7 @@ class ServiceProvider extends AbstractServiceProvider
                         $dispatcher = new MvcDispatcher();
                         $dispatcher->setDefaultNamespace('Lianni\Controller');
 
-                        container('eventsManager')->attach('dispatch', new DispatcherListener(container()));
+                        container('eventsManager')->attach('dispatch', new Listener(container()));
                         break;
                     default:
                         throw new \InvalidArgumentException(

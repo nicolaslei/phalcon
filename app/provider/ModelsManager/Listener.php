@@ -1,11 +1,11 @@
 <?php
 
-namespace Lianni\Listener;
+namespace Lianni\Provider\ModelsManager;
 
 use Phalcon\Events\Event;
 use Phalcon\Mvc\Model\Manager;
 
-class ModelsManager
+class Listener
 {
     public function afterInitialize(Event $event, Manager $manager, $model)
     {

@@ -2,7 +2,6 @@
 
 namespace Lianni\Provider\Config;
 
-use RuntimeException;
 use Lianni\Provider\AbstractServiceProvider;
 
 /**
@@ -21,13 +20,17 @@ class ServiceProvider extends AbstractServiceProvider
     public function onConstruct()
     {
         $configDirectory = config_path();
+        /**
+         * 读取配置文件
+         */
         $configFiles = scandir($configDirectory);
 
         foreach ($configFiles as $file) {
             if ($file == '.' || $file == '..' || stripos($file, '.swp')) {
                 continue;
             }
-            $file = strtolower($file);
+
+            $file            = strtolower($file);
             $this->configs[] = basename($file, '.php');
         }
     }

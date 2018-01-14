@@ -13,8 +13,7 @@
             "Lianni\\": "app/library",
             "Lianni\\Model\\": "app/model",
             "Lianni\\Controller\\": "app/controller",
-            "Lianni\\Provider\\": "app/provider",
-            "Lianni\\Listener\\": "app/listener"
+            "Lianni\\Provider\\": "app/provider"
         },
         "files": [
             "app/helpers.php"

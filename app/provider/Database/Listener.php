@@ -1,6 +1,6 @@
 <?php
 
-namespace Lianni\Listener;
+namespace Lianni\Provider\Database;
 
 use Phalcon\Db\Adapter\Pdo;
 use Phalcon\Events\Event;
@@ -10,7 +10,7 @@ use Phalcon\Logger\Adapter;
  * Class Database
  * @package Lianni\Listener
  */
-class Database
+class Listener
 {
     public function beforeQuery(Event $event, Pdo $connection)
     {

@@ -2,12 +2,10 @@
 
 namespace Lianni\Provider\ModelsMetadata;
 
-
 use Lianni\Provider\AbstractServiceProvider;
 
 class ServiceProvider extends AbstractServiceProvider
 {
-
     public function register()
     {
         $this->di->setShared(
