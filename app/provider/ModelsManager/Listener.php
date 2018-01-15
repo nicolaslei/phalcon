@@ -53,6 +53,7 @@ class Listener
                 }
             }
         }
+
         return $event->getType();
     }
 }

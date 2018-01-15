@@ -37,7 +37,7 @@ class Factory
         /** @var Filesystem $filesystem */
         $filesystem = container('filesystem', [cache_path('config')]);
 
-        if ($filesystem->has('cached.php') && !environment('development')) {
+        if ($filesystem->has('cached.php') && !environment('development') && !env('APP_MAINTAIN', false)) {
             $merge($config, cache_path('config/cached.php'));
 
             return $config;
@@ -47,7 +47,7 @@ class Factory
             $merge($config, config_path("$provider.php"), $provider == 'config' ? null : $provider);
         }
 
-        if (environment('production') && !$filesystem->has('cached.php')) {
+        if (!environment('development') && (env('APP_MAINTAIN', false) || !$filesystem->has('cached.php'))) {
             self::dump($filesystem, 'cached.php', $config->toArray());
         }
 

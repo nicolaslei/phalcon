@@ -20,9 +20,9 @@ class Mvc extends AbstractBootstrap
         Provider\ModelsManager\ServiceProvider::class,
         Provider\ModelsMetadata\ServiceProvider::class,
         Provider\Security\ServiceProvider::class,
-        Provider\Maintain\ServiceProvider::class,
         Provider\Routing\ServiceProvider::class,
         Provider\DataCache\ServiceProvider::class,
+        Provider\AccessControlLists\ServiceProvider::class
     ];
 
     protected $mode = 'normal';
@@ -30,15 +30,20 @@ class Mvc extends AbstractBootstrap
     /**
      * Initializes the application
      */
-    protected function initApplication()
+    public function initApplication()
     {
         $this->app  = new Application($this->di);
     }
 
-    protected function initializeServiceProviders()
+    public function initializeServiceProviders()
     {
         foreach ($this->providers as $provider) {
             $this->initializeServiceProvider(new $provider($this->di));
         }
+    }
+
+    public function runApplication()
+    {
+        return $this->app->handle()->getContent();
     }
 }

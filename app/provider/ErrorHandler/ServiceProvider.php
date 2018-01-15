@@ -29,9 +29,11 @@ class ServiceProvider extends AbstractServiceProvider
                 break;
             case 'api':
                 $handler = new JsonResponseHandler();
+
                 $handler->setJsonApi(true);
 
                 $run->pushHandler($handler);
+
                 break;
             default:
                 new \InvalidArgumentException(

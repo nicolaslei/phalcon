@@ -6,7 +6,7 @@ use Lianni\Provider;
 use Phalcon\Di;
 use Phalcon\Di\FactoryDefault;
 
-abstract class AbstractBootstrap
+abstract class AbstractBootstrap implements BootstrapInterface
 {
     protected $di;
 
@@ -35,12 +35,6 @@ abstract class AbstractBootstrap
         Di::setDefault($this->di);
         $this->di->setShared('bootstrap', $this);
     }
-    /**
-     * Initializes the application
-     */
-    abstract protected function initApplication();
-
-    abstract protected function initializeServiceProviders();
 
     final public function run()
     {
@@ -85,10 +79,6 @@ abstract class AbstractBootstrap
         return $this->environment;
     }
 
-    protected function runApplication()
-    {
-        return $this->app->handle()->getContent();
-    }
     protected function setupEnvironment()
     {
         $this->environment = env('APP_ENV', 'development');

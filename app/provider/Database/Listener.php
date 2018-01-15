@@ -8,7 +8,7 @@ use Phalcon\Logger\Adapter;
 
 /**
  * Class Database
- * @package Lianni\Listener
+ * @package Lianni\Provider\Database\Listener
  */
 class Listener
 {

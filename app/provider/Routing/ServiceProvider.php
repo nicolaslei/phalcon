@@ -19,14 +19,14 @@ class ServiceProvider extends AbstractServiceProvider
                 switch ($mode) {
                     case 'normal':
                         $dataCache = container('dataCache');
-                        $maintain  = container('maintain');
-
+                        // 维护?
+                        $maintain = env('APP_MAINTAIN', false);
                         /** @var Router $router */
                         $router = $dataCache->get(self::CACHE_NAME);
 
-                        if (environment('development') || $maintain !== false || $router === null) {
+                        if (environment('development') || $maintain || $router === null) {
                             // 非开发环境、缓存为空或者是维护状态才保存缓存
-                            $saveToCache = (($router === null || $maintain !== false) && environment('production', 'testing'));
+                            $saveToCache = (($router === null || $maintain) && !environment('development'));
 
                             $router = new Router\Annotations(false);
                             $files  = scandir(app_path('controller'));
@@ -64,9 +64,14 @@ class ServiceProvider extends AbstractServiceProvider
 
                         break;
                     case 'api':
-                        throw new \InvalidArgumentException(
-                            'Not implemented yet.'
-                        );
+                        /** @var \Phalcon\Mvc\Micro $app */
+                        $app = container('app');
+
+                        $app->get('/{name}', function ($name) {
+                            echo "<h1>This is order: {$name}!</h1>";
+                        });
+
+                        break;
                     default:
                         throw new \InvalidArgumentException(
                             sprintf(
