@@ -27,14 +27,6 @@ class ServiceProvider extends AbstractServiceProvider
                     $run->pushHandler(new ErrorPageHandler);
                 }
                 break;
-            case 'api':
-                $handler = new JsonResponseHandler();
-
-                $handler->setJsonApi(true);
-
-                $run->pushHandler($handler);
-
-                break;
             default:
                 new \InvalidArgumentException(
                     sprintf(
