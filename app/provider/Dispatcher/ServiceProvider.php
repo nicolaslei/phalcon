@@ -7,7 +7,7 @@ use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 
 class ServiceProvider extends AbstractServiceProvider
 {
-    public function register()
+    public function register($application)
     {
         $this->di->setShared(
             'dispatcher',

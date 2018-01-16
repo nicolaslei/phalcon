@@ -57,8 +57,6 @@ abstract class AbstractBootstrap implements BootstrapInterface
         $this->initializeServiceProviders();
 
         $this->app->setEventsManager(container('eventsManager'));
-
-        $this->di->setShared('app', $this->app);
         $this->app->setDI($this->di);
 
         return $this->runApplication();
@@ -94,6 +92,6 @@ abstract class AbstractBootstrap implements BootstrapInterface
      */
     protected function initializeServiceProvider(Provider\ServiceProviderInterface $serviceProvider)
     {
-        $serviceProvider->register();
+        $serviceProvider->register($this->app);
     }
 }

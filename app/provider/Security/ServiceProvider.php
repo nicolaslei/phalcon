@@ -9,7 +9,7 @@ class ServiceProvider extends AbstractServiceProvider
 {
     const DEFAULT_WORK_FACTOR = 12;
 
-    public function register()
+    public function register($application)
     {
         $this->di->setShared(
             'security',

@@ -11,6 +11,7 @@ class TestController extends Controller
      */
     public function indexAction()
     {
-        echo __FILE__;exit;
+        return $this->response
+            ->setJsonContent(['ss']);
     }
 }

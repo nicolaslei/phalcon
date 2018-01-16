@@ -44,6 +44,6 @@ class Mvc extends AbstractBootstrap
 
     public function runApplication()
     {
-        return $this->app->handle()->getContent();
+        echo $this->app->handle()->getContent();
     }
 }

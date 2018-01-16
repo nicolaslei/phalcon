@@ -7,7 +7,7 @@ use Phalcon\Mvc\Model\Manager;
 
 class ServiceProvider extends AbstractServiceProvider
 {
-    public function register()
+    public function register($application)
     {
         $this->di->setShared(
             'modelsManager',

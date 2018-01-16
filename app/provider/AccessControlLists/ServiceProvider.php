@@ -7,7 +7,7 @@ use Phalcon\Config;
 
 class ServiceProvider extends AbstractServiceProvider
 {
-    public function register()
+    public function register($application)
     {
         $this->di->setShared(
             'acl',

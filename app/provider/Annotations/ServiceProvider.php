@@ -2,12 +2,11 @@
 
 namespace Lianni\Provider\Annotations;
 
-use Phalcon\Annotations\Factory;
 use Lianni\Provider\AbstractServiceProvider;
 
 class ServiceProvider extends AbstractServiceProvider
 {
-    public function register()
+    public function register($application)
     {
         $this->di->setShared(
             'annotations',

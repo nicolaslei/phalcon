@@ -12,9 +12,9 @@ class IndexController extends Controller
     public function indexAction()
     {
         /** @var \Phalcon\Acl\AdapterInterface $acl */
-        $acl = $this->acl;
+        //$acl = $this->acl;
         // By default the action is deny access
-        $acl->setDefaultAction(\Phalcon\Acl::DENY);
+        //$acl->setDefaultAction(\Phalcon\Acl::DENY);
 
 // You can add roles/resources/accesses to list or insert them directly in the tables
 
@@ -28,7 +28,7 @@ class IndexController extends Controller
         //$acl->allow('Kefu', 'Products', 'update');
 
 // Do Admins are allowed to insert Products?
-        var_dump($acl->isAllowed('Kefu', 'Products', 'delete'));exit;
-
+        //var_dump($acl->isAllowed('Kefu', 'Products', 'delete'));exit;
+        return $this->response->setJsonContent(['ss']);
     }
 }

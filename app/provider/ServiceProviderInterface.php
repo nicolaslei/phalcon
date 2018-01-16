@@ -6,5 +6,5 @@ use Phalcon\Di\InjectionAwareInterface;
 
 interface ServiceProviderInterface extends InjectionAwareInterface
 {
-    public function register();
+    public function register($application);
 }

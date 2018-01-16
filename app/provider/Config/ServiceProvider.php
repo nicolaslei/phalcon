@@ -40,7 +40,7 @@ class ServiceProvider extends AbstractServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register($application)
     {
         $configs = $this->configs;
 

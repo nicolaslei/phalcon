@@ -7,7 +7,7 @@ use Phalcon\Mvc\Url;
 
 class ServiceProvider extends AbstractServiceProvider
 {
-    public function register()
+    public function register($application)
     {
         $this->di->setShared(
             'url',

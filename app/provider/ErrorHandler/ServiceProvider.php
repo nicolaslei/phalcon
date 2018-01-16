@@ -11,7 +11,7 @@ use Whoops\Run;
 
 class ServiceProvider extends AbstractServiceProvider
 {
-    public function register()
+    public function register($application)
     {
         $run  = new Run();
         $mode = container('bootstrap')->getMode();
